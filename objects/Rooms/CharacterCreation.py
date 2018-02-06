@@ -1,4 +1,5 @@
 import objects.objectHandler
+import objects.Player.player
 import pygame
 
 
@@ -7,7 +8,9 @@ class CharacterCreation(objects.objectHandler.Room):
     def __init__(self, drawing_board):
         super().__init__(drawing_board)
 
-        self.background = pygame.image.load("res/Temp_background.png")
+        # self.background = pygame.image.load("res/Temp_background.png")
+
+        self.add_unit(objects.Player.player.Player(400, 400, "????"))
 
     def next_room(self):
         return super().next_room()

@@ -2,6 +2,7 @@ import random
 import datetime
 import pygame
 import sys
+import objects.ImageLoader
 
 
 class Room:
@@ -19,6 +20,11 @@ class Room:
         self.draw_time = 0
         self.room_good = True
         self.poss_next_room = None
+
+        self.width = 1200
+        self.height = 800
+
+        self.image_loader = objects.ImageLoader.IL()
 
         self.db = drawing_board
 
@@ -41,33 +47,34 @@ class Room:
 
         delta_time = current_time - self.last_time
         delta_time = delta_time.microseconds
-        if delta_time == 0:
-            pass
-        else:
-            fps = 6000000 / float(delta_time)
-            print("fps: " + str(fps))
+
         self.draw_time += delta_time
 
         self.last_time = current_time
-
-        for spell in self.Spells:
-            spell[0].step(delta_time, self, self.key_box, self.mouse_info)
-        for unit in self.Units:
-            unit[0].step(delta_time, self, self.key_box, self.mouse_info)
-        for doodad in self.Doodads:
-            doodad[0].step(delta_time, self, self.key_box, self.mouse_info)
-
-        if self.draw_time > 100000:
-            if self.background is not None:
-                self.db.blit(self.background, (0, 0))
+        if self.draw_time > 16666:
             for spell in self.Spells:
-                spell[0].draw(self.db)
+                spell[0].step(self, self.key_box, self.mouse_info)
             for unit in self.Units:
-                unit[0].draw(self.db)
+                unit[0].step(self, self.key_box, self.mouse_info)
             for doodad in self.Doodads:
-                doodad[0].draw(self.db)
-            pygame.display.flip()
+                doodad[0].step(self, self.key_box, self.mouse_info)
             self.draw_time = 0
+
+            if delta_time == 0:
+                pass
+            else:
+                fps = 6000000 / float(delta_time)
+                print("fps: " + str(fps))
+
+        if self.background is not None:
+            self.db.blit(self.background, (0, 0))
+        for spell in self.Spells:
+            spell[0].draw(self.db, self.image_loader)
+        for unit in self.Units:
+            unit[0].draw(self.db, self.image_loader)
+        for doodad in self.Doodads:
+            doodad[0].draw(self.db, self.image_loader)
+        pygame.display.flip()
 
     def add_doodad(self, doodad):
 

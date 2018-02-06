@@ -11,14 +11,14 @@ class BaseObject:
 
         self.image = None
 
-    def step(self, dt, obj_handler, keys, mouse_info):
+    def step(self, obj_handler, keys, mouse_info):
 
         pass
 
-    def draw(self, db):
+    def draw(self, db, IL):
 
         if self.image is not None:
-            db.blit(self.image, (self.x, self.y))
+            db.blit(IL.load_image(self.image), (self.x, self.y))
 
 
 class BaseDoodad(BaseObject):
@@ -29,11 +29,11 @@ class BaseDoodad(BaseObject):
         self.destroyable = False
         self.health = 1
 
-    def step(self, dt, obj_handler, keys, mouse_info):
-        super(BaseDoodad, self).step(dt, obj_handler, keys, mouse_info)
+    def step(self, obj_handler, keys, mouse_info):
+        super(BaseDoodad, self).step(obj_handler, keys, mouse_info)
 
-    def draw(self, db):
-        super(BaseDoodad, self).draw(db)
+    def draw(self, db, IL):
+        super(BaseDoodad, self).draw(db, IL)
 
 
 class BaseSpell(BaseObject):
@@ -52,11 +52,11 @@ class BaseSpell(BaseObject):
 
         self.cost = 0
 
-    def draw(self, db):
-        super(BaseSpell, self).draw(db)
+    def draw(self, db, IL):
+        super(BaseSpell, self).draw(db, IL)
 
-    def step(self, dt, obj_handler, keys, mouse_info):
-        super(BaseSpell, self).step(dt, obj_handler, keys, mouse_info)
+    def step(self, obj_handler, keys, mouse_info):
+        super(BaseSpell, self).step(obj_handler, keys, mouse_info)
 
 
 class BaseUnit(BaseObject):
@@ -80,11 +80,11 @@ class BaseUnit(BaseObject):
 
         self.spells = {}  # stored spell:cd
 
-    def draw(self, db):
-        super(BaseUnit, self).draw(db)
+    def draw(self, db, IL):
+        super(BaseUnit, self).draw(db, IL)
 
-    def step(self, dt, obj_handler, keys, mouse_info):
-        super(BaseUnit, self).step(dt, obj_handler, keys, mouse_info)
+    def step(self, obj_handler, keys, mouse_info):
+        super(BaseUnit, self).step(obj_handler, keys, mouse_info)
 
 
 
