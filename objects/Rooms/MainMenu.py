@@ -9,7 +9,7 @@ class MainMenu(objects.objectHandler.Room):
     def __init__(self, drawing_board):
         super().__init__(drawing_board)
 
-        self.background = pygame.image.load("res/background.png")
+        self.background = self.image_loader.load_image("res/background.jpg")
 
         self.add_doodad(objects.MenuItems.Selectables.Quit(400, 600))
         self.add_doodad(objects.MenuItems.Selectables.NewGame(400, 200))

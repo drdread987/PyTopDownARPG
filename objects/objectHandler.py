@@ -60,11 +60,11 @@ class Room:
                 doodad[0].step(self, self.key_box, self.mouse_info)
             self.draw_time = 0
 
-            if delta_time == 0:
-                pass
-            else:
-                fps = 6000000 / float(delta_time)
-                print("fps: " + str(fps))
+        if delta_time == 0:
+            pass
+        else:
+            fps = 6000000 / float(delta_time)
+            print("fps: " + str(fps))
 
         if self.background is not None:
             self.db.blit(self.background, (0, 0))
@@ -74,7 +74,7 @@ class Room:
             unit[0].draw(self.db, self.image_loader)
         for doodad in self.Doodads:
             doodad[0].draw(self.db, self.image_loader)
-        pygame.display.flip()
+        pygame.display.update()
 
     def add_doodad(self, doodad):
 
