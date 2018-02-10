@@ -11,7 +11,7 @@ class Player(objects.bases.BaseUnit):
         self.experience = None
 
         self.pclass = None
-
+        self.gravity = True
         self.maxHealth = 1
         self.currentHealth = self.maxHealth
 

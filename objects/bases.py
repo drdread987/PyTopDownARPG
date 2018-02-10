@@ -1,3 +1,5 @@
+import objects.Tools.collision as collide
+
 
 class BaseObject:
 
@@ -11,9 +13,28 @@ class BaseObject:
 
         self.image = None
 
+        self.gravity = False
+        self.onGround = False
+        self.downwardVelocity = 0
+        self.weight = 3
+
     def step(self, obj_handler, keys, mouse_info):
 
-        pass
+        if self.gravity:
+
+            for obj in obj_handler.Doodads:
+                if obj.obstruction:
+                    if collide.rect_collide(self.x, self.width, self.y + self.downwardVelocity, self.height,
+                                            obj.x, obj.width, obj.y, obj.height):
+                        self.y = obj.y - self.height
+                        self.onGround = True
+                        self.downwardVelocity = 0
+
+            if not self.onGround:
+
+                if self.downwardVelocity < self.weight * 2:
+                    self.downwardVelocity += self.weight / 6
+                self.y += self.downwardVelocity
 
     def draw(self, db, IL):
 
@@ -27,6 +48,7 @@ class BaseDoodad(BaseObject):
         super(BaseDoodad, self).__init__(x, y)
 
         self.destroyable = False
+        self.obstruction = True
         self.health = 1
 
     def step(self, obj_handler, keys, mouse_info):
