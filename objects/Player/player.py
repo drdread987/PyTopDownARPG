@@ -1,4 +1,5 @@
 import objects.bases
+from objects.Tools.collision import rect_collide as collide
 
 
 class Player(objects.bases.BaseUnit):
@@ -19,6 +20,7 @@ class Player(objects.bases.BaseUnit):
 
         self.width = 32
         self.height = 32
+        self.speed = 2.5
 
     def load_pclass(self, save_name):
 
@@ -30,16 +32,29 @@ class Player(objects.bases.BaseUnit):
     def step(self, obj_handler, keys, mouse_info):
         super().step(obj_handler, keys, mouse_info)
         # print(self.x, self.y)
-        self.handle_keys(keys)
+        self.handle_keys(keys, obj_handler)
 
-    def handle_keys(self, keys):
+    def handle_keys(self, keys, obj_handler):
         for key in keys:
-            # print(key)
+            print(key)
             if key == 100:
-                self.x += 2.5
+                good = True
+                for obj in obj_handler.Doodads:
+                    if obj[0].obstruction:
+                        if collide(self.x + self.speed, self.width, self.y-1, self.height,
+                                   obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                            good = False
+                if good:
+                    self.x += self.speed
             elif key == 97:
-                self.x -= 2.5
-            if key == 119:
-                self.y -= 2.5
-            elif key == 115:
-                self.y += 2.5
+                good = True
+                for obj in obj_handler.Doodads:
+                    if obj[0].obstruction:
+                        if collide(self.x - self.speed, self.width, self.y-1, self.height,
+                                   obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                            good = False
+                if good:
+                    self.x -= self.speed
+
+            elif key == 32 and self.onGround and not self.jumping:
+                self.jumping = True

@@ -15,18 +15,22 @@ class BaseObject:
 
         self.gravity = False
         self.onGround = False
+        self.jumping = False
         self.downwardVelocity = 0
+        self.upwardVelocity = 0
+        self.upwardVelocityStep = .5
+        self.upwardVelocityMax = 10
         self.weight = 3
 
     def step(self, obj_handler, keys, mouse_info):
 
-        if self.gravity:
-
+        if self.gravity and not self.jumping:
+            self.onGround = False
             for obj in obj_handler.Doodads:
-                if obj.obstruction:
+                if obj[0].obstruction:
                     if collide.rect_collide(self.x, self.width, self.y + self.downwardVelocity, self.height,
-                                            obj.x, obj.width, obj.y, obj.height):
-                        self.y = obj.y - self.height
+                                            obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                        self.y = obj[0].y - self.height
                         self.onGround = True
                         self.downwardVelocity = 0
 
@@ -35,6 +39,16 @@ class BaseObject:
                 if self.downwardVelocity < self.weight * 2:
                     self.downwardVelocity += self.weight / 6
                 self.y += self.downwardVelocity
+        if self.jumping:
+            self.downwardVelocity = 0
+            self.onGround = False
+            if self.upwardVelocity > 0:
+                self.y -= self.upwardVelocity
+                self.upwardVelocity -= self.upwardVelocityStep
+            else:
+                self.jumping = False
+                self.upwardVelocity = self.upwardVelocityMax
+
 
     def draw(self, db, IL):
 
