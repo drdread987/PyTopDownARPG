@@ -53,10 +53,16 @@ class Room:
         self.last_time = current_time
         if self.draw_time > 16666:
             for spell in self.Spells:
+                if not spell[0].alive:
+                    self.rem_spell(code=spell[1])
                 spell[0].step(self, self.key_box, self.mouse_info)
             for unit in self.Units:
+                if not unit[0].alive:
+                    self.rem_unit(code=unit[1])
                 unit[0].step(self, self.key_box, self.mouse_info)
             for doodad in self.Doodads:
+                if not doodad[0].alive:
+                    self.rem_doodad(code=doodad[1])
                 doodad[0].step(self, self.key_box, self.mouse_info)
             self.draw_time = 0
 
@@ -64,16 +70,16 @@ class Room:
             pass
         else:
             fps = 6000000 / float(delta_time)
-            print("fps: " + str(fps))
+            # print("fps: " + str(fps))
 
         if self.background is not None:
             self.db.blit(self.background, (0, 0))
+        for doodad in self.Doodads:
+            doodad[0].draw(self.db, self.image_loader)
         for spell in self.Spells:
             spell[0].draw(self.db, self.image_loader)
         for unit in self.Units:
             unit[0].draw(self.db, self.image_loader)
-        for doodad in self.Doodads:
-            doodad[0].draw(self.db, self.image_loader)
         pygame.display.update()
 
     def add_doodad(self, doodad):

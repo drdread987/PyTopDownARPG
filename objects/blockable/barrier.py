@@ -32,6 +32,8 @@ class BlackBarrier(objects.bases.BaseDoodad):
         self.width = 50
         self.height = 50
 
+        self.passable = True
+
         self.image = "res/black_barrier.jpeg"
 
     def step(self, obj_handler, keys, mouse_info):

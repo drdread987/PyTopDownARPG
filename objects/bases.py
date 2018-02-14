@@ -22,14 +22,17 @@ class BaseObject:
         self.upwardVelocityMax = 10
         self.weight = 3
 
+        self.alive = True
+
     def step(self, obj_handler, keys, mouse_info):
 
         if self.gravity and not self.jumping:
             self.onGround = False
             for obj in obj_handler.Doodads:
                 if obj[0].obstruction:
-                    if collide.rect_collide(self.x, self.width, self.y + self.downwardVelocity, self.height,
-                                            obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                    if collide.rect_collide(self.x, self.width, self.y + self.height + self.downwardVelocity,
+                                            1, obj[0].x, obj[0].width, obj[0].y,
+                                            self.downwardVelocity):
                         self.y = obj[0].y - self.height
                         self.onGround = True
                         self.downwardVelocity = 0
@@ -49,7 +52,6 @@ class BaseObject:
                 self.jumping = False
                 self.upwardVelocity = self.upwardVelocityMax
 
-
     def draw(self, db, IL):
 
         if self.image is not None:
@@ -64,6 +66,7 @@ class BaseDoodad(BaseObject):
         self.destroyable = False
         self.obstruction = True
         self.health = 1
+        self.passable = True
 
     def step(self, obj_handler, keys, mouse_info):
         super(BaseDoodad, self).step(obj_handler, keys, mouse_info)
@@ -121,6 +124,15 @@ class BaseUnit(BaseObject):
 
     def step(self, obj_handler, keys, mouse_info):
         super(BaseUnit, self).step(obj_handler, keys, mouse_info)
+
+    def take_damage(self, value, dtype):
+
+        self.currentHealth -= value
+
+        if self.currentHealth <= 0:
+            self.alive = False
+
+
 
 
 

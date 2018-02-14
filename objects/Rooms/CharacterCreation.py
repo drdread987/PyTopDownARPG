@@ -14,6 +14,8 @@ class CharacterCreation(objects.objectHandler.Room):
 
         self.add_unit(objects.Player.player.Player(400, 400, "????"))
         self.add_doodad(objects.blockable.barrier.BlackBarrier(375, 700))
+        self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 650))
+        self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 550))
 
     def next_room(self):
         return super().next_room()
