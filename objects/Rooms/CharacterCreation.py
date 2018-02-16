@@ -25,3 +25,11 @@ class CharacterCreation(objects.objectHandler.Room):
 
     def end_room(self):
         super().end_room()
+
+    def player_died(self, player):
+        super().player_died(player)
+
+        player.alive = True
+        player.x = 400
+        player.y = 400
+        player.currentHealth = player.maxHealth

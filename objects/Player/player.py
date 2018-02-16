@@ -21,7 +21,7 @@ class Player(objects.bases.BaseUnit):
 
         self.width = 32
         self.height = 32
-        self.speed = 2.5
+        self.speed = 3
 
     def load_pclass(self, save_name):
 
@@ -35,6 +35,9 @@ class Player(objects.bases.BaseUnit):
         if self.onGround and self.double_jumped and self.double_jump_available:
             self.double_jumped = False
         super().step(obj_handler, keys, mouse_info)
+
+        if self.y > 800:
+            self.take_damage(1, "PHYSICAL")
         # print(self.x, self.y)
 
     def handle_keys(self, keys, obj_handler):

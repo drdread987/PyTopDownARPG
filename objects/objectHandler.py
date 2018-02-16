@@ -3,6 +3,7 @@ import datetime
 import pygame
 import sys
 import objects.ImageLoader
+import objects.Player.player
 
 
 class Room:
@@ -58,7 +59,10 @@ class Room:
                 spell[0].step(self, self.key_box, self.mouse_info)
             for unit in self.Units:
                 if not unit[0].alive:
-                    self.rem_unit(code=unit[1])
+                    if isinstance(unit[0], objects.Player.player.Player):
+                        self.player_died(unit[0])
+                    else:
+                        self.rem_unit(code=unit[1])
                 unit[0].step(self, self.key_box, self.mouse_info)
             for doodad in self.Doodads:
                 if not doodad[0].alive:
@@ -225,6 +229,10 @@ class Room:
     def quit_game(self):
 
         sys.exit()
+
+    def player_died(self, player):
+
+        pass
 
 
 

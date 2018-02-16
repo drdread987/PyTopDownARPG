@@ -3,9 +3,49 @@ import pygame
 import objects.Tools.collision
 
 
-class Quit(objects.bases.BaseDoodad):
-    def __init__(self, x, y):
+class ClickableFont(objects.bases.BaseDoodad):
+
+    def __init__(self, x, y, width, height, text, font, font_size, called_function, color, hcolor):
         super().__init__(x, y)
+
+        self.width = width
+        self.height = height
+        self.text = text
+        self.called_function = called_function
+        pygame.font.init()
+        self.highlighted = False
+        self.colors = [color, hcolor]
+        self.color = color
+
+        self.font = pygame.font.SysFont(font, font_size)
+        self.size = self.font.size(self.text)
+
+    def step(self, obj_handler, keys, mouse_info):
+        super().step(obj_handler, keys, mouse_info)
+
+        super().step(obj_handler, keys, mouse_info)
+        mouse_x = mouse_info[1][0]
+        mouse_y = mouse_info[1][1]
+        if objects.Tools.collision.rect_collide(mouse_x, 1, mouse_y, 1, self.x - self.width/2, self.width,
+                                                self.y - self.height/2, self.height):
+            self.color = self.colors[1]
+            self.highlighted = True
+        else:
+            self.color = self.colors[0]
+            self.highlighted = False
+
+        if mouse_info[0][0] and self.highlighted:
+            self.called_function()
+
+    def draw(self, db, IL):
+        textsurface = self.font.render(self.text, False, self.color)
+
+        db.blit(textsurface, (self.x - (self.size[0]/2), self.y - (self.size[1]/2)))
+
+
+class Quit(ClickableFont):
+    def __init__(self, x, y, width, height, text, font, font_size, called_function, color, hcolor):
+        super().__init__(x, y, width, height, text, font, font_size, called_function, color, hcolor)
 
         self.original_image = "res/Quit.png"
         self.highlighted_image = "res/Quit_highlighted.png"
