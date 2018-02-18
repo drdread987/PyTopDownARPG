@@ -12,5 +12,6 @@ class IL:
         if image_location in self.images:
             return self.images[image_location]
         else:
+            print(image_location)
             self.images[image_location] = pygame.image.load(image_location).convert()
             return self.images[image_location]

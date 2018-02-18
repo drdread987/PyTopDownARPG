@@ -22,6 +22,9 @@ class BaseObject:
         self.upwardVelocityMax = 10
         self.weight = 3
 
+        self.animated = False
+        self.animation = None
+
         self.alive = True
 
     def step(self, obj_handler, keys, mouse_info):
@@ -54,7 +57,9 @@ class BaseObject:
 
     def draw(self, db, IL):
 
-        if self.image is not None:
+        if self.animated:
+            db.blit(self.image.grab_image(self.animation), (self.x, self.y))
+        elif self.image is not None:
             db.blit(IL.load_image(self.image), (self.x, self.y))
 
 

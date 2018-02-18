@@ -12,7 +12,7 @@ class CharacterCreation(objects.objectHandler.Room):
 
         self.background = self.image_loader.load_image("res/Temp_background.png")
 
-        self.add_unit(objects.Player.player.Player(400, 400, "????"))
+        self.add_unit(objects.Player.player.Player(400, 400, "????", self.image_loader))
         self.add_doodad(objects.blockable.barrier.BlackBarrier(375, 700))
         self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 650))
         self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 550))

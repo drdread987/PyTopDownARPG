@@ -1,10 +1,11 @@
 import objects.bases
 from objects.Tools.collision import rect_collide as collide
+from objects.Tools.Sprite import AnimatedSprite as AS
 
 
 class Player(objects.bases.BaseUnit):
 
-    def __init__(self, x, y, save_name):
+    def __init__(self, x, y, save_name, IL):
         super().__init__(x, y)
 
         self.level = None
@@ -17,11 +18,15 @@ class Player(objects.bases.BaseUnit):
         self.currentHealth = self.maxHealth
         self.double_jumped = False
         self.double_jump_available = True
-        self.image = "res/Player/scr1_rt2.png"
+
+        self.animated = True
+        self.animation = "RIGHT1"
 
         self.width = 32
         self.height = 32
         self.speed = 3
+        self.image = AS(self.width, self.height, "res/Player/scr1_spritesheet.png", IL,
+                        animations=["RIGHT1", "RIGHT2", "LEFT1", "LEFT2"])
 
     def load_pclass(self, save_name):
 
@@ -59,6 +64,7 @@ class Player(objects.bases.BaseUnit):
                                 good = False
                 if good:
                     self.x += self.speed
+                    if self.animation
             elif key == 97:
                 good = True
                 for obj in obj_handler.Doodads:

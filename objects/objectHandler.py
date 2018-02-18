@@ -234,6 +234,10 @@ class Room:
 
         pass
 
+    def scroll_room(self, dx, dy):
+
+        pass
+
 
 
 
