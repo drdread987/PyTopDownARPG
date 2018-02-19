@@ -20,13 +20,15 @@ class Player(objects.bases.BaseUnit):
         self.double_jump_available = True
 
         self.animated = True
-        self.animation = "RIGHT1"
-
+        self.animation = "RIGHT"
+        self.direction = "RIGHT"
+        self.animation_changed = False
         self.width = 32
         self.height = 32
         self.speed = 3
         self.image = AS(self.width, self.height, "res/Player/scr1_spritesheet.png", IL,
-                        animations=["RIGHT1", "RIGHT2", "LEFT1", "LEFT2"])
+                        10, ["RIGHT", "LEFT", "RIGHTIDLE", "LEFTIDLE", "INAIRRIGHT", "INAIRLEFT"],
+                        [2, 2, 1, 1, 1, 1, 1])
 
     def load_pclass(self, save_name):
 
@@ -43,6 +45,16 @@ class Player(objects.bases.BaseUnit):
 
         if self.y > 800:
             self.take_damage(1, "PHYSICAL")
+        if not self.onGround:
+            if self.direction == "RIGHT":
+                self.animation = "INAIRRIGHT"
+            else:
+                self.animation = "INAIRLEFT"
+        elif not self.animation_changed:
+            self.animation = self.direction + "IDLE"
+        else:
+            self.animation_changed = False
+        self.image.new_animation(self.animation)
         # print(self.x, self.y)
 
     def handle_keys(self, keys, obj_handler):
@@ -62,9 +74,12 @@ class Player(objects.bases.BaseUnit):
                             else:
                                 self.x = obj[0].x - self.width - 1
                                 good = False
+
                 if good:
                     self.x += self.speed
-                    if self.animation
+                    self.animation = "RIGHT"
+                    self.direction = "RIGHT"
+                    self.animation_changed = True
             elif key == 97:
                 good = True
                 for obj in obj_handler.Doodads:
@@ -79,6 +94,9 @@ class Player(objects.bases.BaseUnit):
 
                 if good:
                     self.x -= self.speed
+                    self.animation = "LEFT"
+                    self.direction = "LEFT"
+                    self.animation_changed = True
 
             elif key == 32 and self.onGround and not self.jumping:
                 self.jumping = True

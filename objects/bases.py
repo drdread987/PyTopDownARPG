@@ -28,7 +28,8 @@ class BaseObject:
         self.alive = True
 
     def step(self, obj_handler, keys, mouse_info):
-
+        if self.animation:
+            self.image.step()
         if self.gravity and not self.jumping:
             self.onGround = False
             for obj in obj_handler.Doodads:
@@ -58,7 +59,7 @@ class BaseObject:
     def draw(self, db, IL):
 
         if self.animated:
-            db.blit(self.image.grab_image(self.animation), (self.x, self.y))
+            db.blit(self.image.grab_image(), (self.x, self.y))
         elif self.image is not None:
             db.blit(IL.load_image(self.image), (self.x, self.y))
 
