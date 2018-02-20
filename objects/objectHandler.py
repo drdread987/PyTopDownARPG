@@ -14,8 +14,8 @@ class Room:
         self.Units = []  # stored [[unit, code]...]
         self.Spells = []  # stored [[spell, code]...]
 
-        self.width = 1800
-        self.height = 1000
+        self.width = 1200
+        self.height = 800
 
         self.Codes = {}  # stored {code:frames_till_death,...} if -1 then that means the code is still alive
         self.creation_time = datetime.datetime.now()
