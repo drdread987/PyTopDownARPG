@@ -12,12 +12,16 @@ class Player(objects.bases.BaseUnit):
 
         self.experience = None
 
+        self.player = True
+
         self.pclass = None
         self.gravity = True
         self.maxHealth = 1
         self.currentHealth = self.maxHealth
         self.double_jumped = False
         self.double_jump_available = True
+
+        self.camera_locked = False
 
         self.animated = True
         self.animation = "RIGHT"
@@ -34,8 +38,8 @@ class Player(objects.bases.BaseUnit):
 
         pass
 
-    def draw(self, db, IL):
-        super().draw(db, IL)
+    def draw(self, object_handler, IL):
+        super().draw(object_handler, IL)
 
     def step(self, obj_handler, keys, mouse_info):
         self.handle_keys(keys, obj_handler)
@@ -43,7 +47,7 @@ class Player(objects.bases.BaseUnit):
             self.double_jumped = False
         super().step(obj_handler, keys, mouse_info)
 
-        if self.y > 800:
+        if self.y > obj_handler.height:
             self.take_damage(1, "PHYSICAL")
         if not self.onGround:
             if self.direction == "RIGHT":
@@ -56,6 +60,8 @@ class Player(objects.bases.BaseUnit):
             self.animation_changed = False
         self.image.new_animation(self.animation)
         # print(self.x, self.y)
+        if not self.camera_locked:
+            obj_handler.shift_room(self.x, self.y)
 
     def handle_keys(self, keys, obj_handler):
         delete_keys = []
@@ -63,37 +69,14 @@ class Player(objects.bases.BaseUnit):
         for key in keys:
             # print(key)
             if key == 100:
-                good = True
-                for obj in obj_handler.Doodads:
-                    if obj[0].obstruction:
-                        if collide(self.x + self.width + self.speed, 1, self.y-1, self.height,
-                                   obj[0].x, obj[0].width, obj[0].y, obj[0].height):
-
-                            if obj[0].passable:
-                                good = True
-                            else:
-                                self.x = obj[0].x - self.width - 1
-                                good = False
-
+                good = self.move(self.speed, obj_handler)
                 if good:
-                    self.x += self.speed
                     self.animation = "RIGHT"
                     self.direction = "RIGHT"
                     self.animation_changed = True
             elif key == 97:
-                good = True
-                for obj in obj_handler.Doodads:
-                    if obj[0].obstruction:
-                        if collide(self.x - self.speed, 1, self.y-1, self.height,
-                                   obj[0].x, obj[0].width, obj[0].y, obj[0].height):
-                            if obj[0].passable:
-                                good = True
-                            else:
-                                self.x = obj[0].x + obj[0].width + 1
-                                good = False
-
+                good = self.move(-self.speed, obj_handler)
                 if good:
-                    self.x -= self.speed
                     self.animation = "LEFT"
                     self.direction = "LEFT"
                     self.animation_changed = True

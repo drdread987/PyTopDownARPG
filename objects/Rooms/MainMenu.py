@@ -20,10 +20,10 @@ class MainMenu(objects.objectHandler.Room):
         super().set_next_room(room)
 
         if room == "NG":
-            self.poss_next_room = objects.Rooms.CharacterCreation.CharacterCreation(self.db)
+            self.poss_next_room = objects.Rooms.CharacterCreation.CharacterCreation(self.original_db)
 
     def new_game(self):
-        self.poss_next_room = objects.Rooms.CharacterCreation.CharacterCreation(self.db)
+        self.poss_next_room = objects.Rooms.CharacterCreation.CharacterCreation(self.original_db)
         self.end_room()
 
 

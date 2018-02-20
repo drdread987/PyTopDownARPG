@@ -14,6 +14,9 @@ class Room:
         self.Units = []  # stored [[unit, code]...]
         self.Spells = []  # stored [[spell, code]...]
 
+        self.width = 1800
+        self.height = 1000
+
         self.Codes = {}  # stored {code:frames_till_death,...} if -1 then that means the code is still alive
         self.creation_time = datetime.datetime.now()
         self.last_time = datetime.datetime.now()
@@ -22,12 +25,15 @@ class Room:
         self.room_good = True
         self.poss_next_room = None
 
-        self.width = 1200
-        self.height = 800
+        self.viewport_x = 0
+        self.viewport_width = 1200
+        self.viewport_y = 0
+        self.viewport_height = 800
 
         self.image_loader = objects.ImageLoader.IL()
 
-        self.db = drawing_board
+        self.original_db = drawing_board
+        self.db = pygame.Surface((self.width, self.height))
 
         self.key_box = []
         self.mouse_info = [pygame.mouse.get_pressed(), pygame.mouse.get_pos()]
@@ -59,7 +65,7 @@ class Room:
                 spell[0].step(self, self.key_box, self.mouse_info)
             for unit in self.Units:
                 if not unit[0].alive:
-                    if isinstance(unit[0], objects.Player.player.Player):
+                    if unit[0].player:
                         self.player_died(unit[0])
                     else:
                         self.rem_unit(code=unit[1])
@@ -79,11 +85,12 @@ class Room:
         if self.background is not None:
             self.db.blit(self.background, (0, 0))
         for doodad in self.Doodads:
-            doodad[0].draw(self.db, self.image_loader)
+            doodad[0].draw(self, self.image_loader)
         for spell in self.Spells:
-            spell[0].draw(self.db, self.image_loader)
+            spell[0].draw(self, self.image_loader)
         for unit in self.Units:
-            unit[0].draw(self.db, self.image_loader)
+            unit[0].draw(self, self.image_loader)
+        self.original_db.blit(self.db, (0, 0))
         pygame.display.update()
 
     def add_doodad(self, doodad):
@@ -207,7 +214,6 @@ class Room:
 
             self.mouse_info = [pygame.mouse.get_pressed(), pygame.mouse.get_pos()]
 
-
     def initiate_room(self):
 
         while self.room_good:
@@ -234,9 +240,31 @@ class Room:
 
         pass
 
-    def scroll_room(self, dx, dy):
+    def draw_object(self, source, coord):
 
-        pass
+        self.db.blit(source, (coord[0] - self.viewport_x, coord[1] - self.viewport_y))
+
+    def shift_room(self, x, y):
+        x -= self.viewport_width / 2
+        y -= self.viewport_height / 2
+        if self.width - self.viewport_width > x > 0:
+            self.viewport_x = x
+        else:
+            if x < 0:
+                self.viewport_x = 0
+            else:
+                self.viewport_x = self.width - self.viewport_width
+
+        if self.height - self.viewport_height > y > 0:
+            self.viewport_y = y
+        else:
+            if y < 0:
+                self.viewport_y = 0
+            else:
+                self.viewport_y = self.height - self.viewport_height
+
+
+
 
 
 

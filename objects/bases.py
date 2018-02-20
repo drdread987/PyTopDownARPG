@@ -13,6 +13,8 @@ class BaseObject:
 
         self.image = None
 
+        self.player = False
+
         self.gravity = False
         self.onGround = False
         self.jumping = False
@@ -56,12 +58,47 @@ class BaseObject:
                 self.jumping = False
                 self.upwardVelocity = self.upwardVelocityMax
 
-    def draw(self, db, IL):
+    def draw(self, object_handler, IL):
 
         if self.animated:
-            db.blit(self.image.grab_image(), (self.x, self.y))
+            object_handler.draw_object(self.image.grab_image(), (self.x, self.y))
         elif self.image is not None:
-            db.blit(IL.load_image(self.image), (self.x, self.y))
+            object_handler.draw_object(IL.load_image(self.image), (self.x, self.y))
+
+    def move(self, speed, obj_handler):
+        if speed > 0:
+
+            good = True
+            for obj in obj_handler.Doodads:
+                if obj[0].obstruction:
+                    if collide.rect_collide(self.x + self.width + speed, 1, self.y - 1, self.height,
+                                            obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                        if obj[0].passable:
+                            good = True
+                        else:
+                            self.x = obj[0].x - self.width - 1
+                            good = False
+
+            if good:
+                self.x += speed
+
+            return good
+        elif speed < 0:
+
+            good = True
+            for obj in obj_handler.Doodads:
+                if obj[0].obstruction:
+                    if collide.rect_collide(self.x - speed, 1, self.y - 1, self.height,
+                                            obj[0].x, obj[0].width, obj[0].y, obj[0].height):
+                        if obj[0].passable:
+                            good = True
+                        else:
+                            self.x = obj[0].x + obj[0].width + 1
+                            good = False
+
+            if good:
+                self.x += speed
+            return good
 
 
 class BaseDoodad(BaseObject):
@@ -77,8 +114,8 @@ class BaseDoodad(BaseObject):
     def step(self, obj_handler, keys, mouse_info):
         super(BaseDoodad, self).step(obj_handler, keys, mouse_info)
 
-    def draw(self, db, IL):
-        super(BaseDoodad, self).draw(db, IL)
+    def draw(self, object_handler, IL):
+        super(BaseDoodad, self).draw(object_handler, IL)
 
 
 class BaseSpell(BaseObject):
@@ -97,8 +134,8 @@ class BaseSpell(BaseObject):
 
         self.cost = 0
 
-    def draw(self, db, IL):
-        super(BaseSpell, self).draw(db, IL)
+    def draw(self,  object_handler, IL):
+        super(BaseSpell, self).draw(object_handler, IL)
 
     def step(self, obj_handler, keys, mouse_info):
         super(BaseSpell, self).step(obj_handler, keys, mouse_info)
@@ -125,8 +162,8 @@ class BaseUnit(BaseObject):
 
         self.spells = {}  # stored spell:cd
 
-    def draw(self, db, IL):
-        super(BaseUnit, self).draw(db, IL)
+    def draw(self,  object_handler, IL):
+        super(BaseUnit, self).draw(object_handler, IL)
 
     def step(self, obj_handler, keys, mouse_info):
         super(BaseUnit, self).step(obj_handler, keys, mouse_info)

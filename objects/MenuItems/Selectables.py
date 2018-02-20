@@ -37,10 +37,10 @@ class ClickableFont(objects.bases.BaseDoodad):
         if mouse_info[0][0] and self.highlighted:
             self.called_function()
 
-    def draw(self, db, IL):
+    def draw(self, object_handler, IL):
         textsurface = self.font.render(self.text, False, self.color)
 
-        db.blit(textsurface, (self.x - (self.size[0]/2), self.y - (self.size[1]/2)))
+        object_handler.draw_object(textsurface, (self.x - (self.size[0]/2), self.y - (self.size[1]/2)))
 
 
 class Quit(ClickableFont):
@@ -69,8 +69,8 @@ class Quit(ClickableFont):
         if mouse_info[0][0] and self.highlighted:
             obj_handler.quit_game()
 
-    def draw(self, db, IL):
-        super().draw(db, IL)
+    def draw(self, object_handler, IL):
+        super().draw(object_handler, IL)
 
 
 class NewGame(objects.bases.BaseDoodad):
@@ -101,5 +101,5 @@ class NewGame(objects.bases.BaseDoodad):
             obj_handler.set_next_room("NG")
             obj_handler.end_room()
 
-    def draw(self, db, IL):
-        super().draw(db, IL)
+    def draw(self, object_handler, IL):
+        super().draw(object_handler, IL)
