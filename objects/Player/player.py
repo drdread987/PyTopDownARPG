@@ -27,7 +27,7 @@ class Player(objects.bases.BaseUnit):
         self.animation = "RIGHT"
         self.direction = "RIGHT"
         self.animation_changed = False
-        self.width = 32
+        self.width = 25
         self.height = 32
         self.speed = 3
         self.image = AS(self.width, self.height, "res/Player/scr1_spritesheet.png", IL,

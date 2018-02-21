@@ -28,8 +28,8 @@ class AnimatedSprite:
             y_pos += self.height * self.animation_step
             x_pos = 0
 
-            animation_surface = self.image_loader.load_image(self.images).subsurface((x_pos, y_pos, self.height,
-                                                                                      self.width))
+            animation_surface = self.image_loader.load_image(self.images).subsurface((x_pos, y_pos, self.width,
+                                                                                      self.height))
             return animation_surface
         except IndexError:
             print("ANIMATION DOES NOT EXIST")
