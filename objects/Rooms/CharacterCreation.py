@@ -19,7 +19,7 @@ class CharacterCreation(objects.objectHandler.Room):
         self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 650))
         self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 550))
         for x in range(10):
-            self.add_doodad(objects.blockable.barrier.BlackBarrier(375 + (50 * x), 700))
+            self.add_doodad(objects.blockable.barrier.BlackBarrier(375 + (32 * x), 700))
 
     def next_room(self):
         return super().next_room()

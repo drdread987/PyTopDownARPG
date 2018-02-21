@@ -29,8 +29,8 @@ class BlackBarrier(objects.bases.BaseDoodad):
 
         self.obstruction = True
 
-        self.width = 50
-        self.height = 50
+        self.width = 32
+        self.height = 32
 
         self.passable = True
 
