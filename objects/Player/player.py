@@ -28,9 +28,11 @@ class Player(objects.bases.BaseUnit):
         self.direction = "RIGHT"
         self.animation_changed = False
         self.width = 25
+        self.i_width = self.width
         self.height = 32
+        self.i_height = self.height
         self.speed = 3
-        self.image = AS(self.width, self.height, "res/Player/scr1_spritesheet.png", IL,
+        self.image = AS(self.i_width, self.i_height, "res/Player/scr1_spritesheet.png", IL,
                         10, ["RIGHT", "LEFT", "RIGHTIDLE", "LEFTIDLE", "INAIRRIGHT", "INAIRLEFT"],
                         [2, 2, 1, 1, 1, 1, 1])
 
@@ -90,6 +92,10 @@ class Player(objects.bases.BaseUnit):
                 self.upwardVelocity = self.upwardVelocityMax
                 self.double_jumped = True
                 delete_keys.append(key_counter)
+
+            elif key == 115 and self.onGround:
+                self.y += 3
+                self.onGround = False
 
             key_counter += 1
         delete_keys.sort(reverse=True)

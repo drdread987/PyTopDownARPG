@@ -1,6 +1,6 @@
 import objects.objectHandler
 import objects.Player.player
-import objects.blockable.barrier
+import objects.blockable.barrier as barrier
 import pygame
 import os
 
@@ -12,14 +12,15 @@ class CharacterCreation(objects.objectHandler.Room):
 
         self.background = self.image_loader.load_image("res/Temp_background.png")
 
-        self.width = 1800
-        self.height = 800
+        self.width = 2560
+        self.height = 1600
+
+        self.scene_key = {(0, 0, 0): ["DOODAD", barrier.BlackBarrier, None]}
+        self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
         self.add_unit(objects.Player.player.Player(400, 400, "????", self.image_loader))
-        self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 650))
-        self.add_doodad(objects.blockable.barrier.BlackBarrier(425, 550))
-        for x in range(10):
-            self.add_doodad(objects.blockable.barrier.BlackBarrier(375 + (32 * x), 700))
+
+        self.load_scene()
 
     def next_room(self):
         return super().next_room()

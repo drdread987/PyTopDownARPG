@@ -4,6 +4,7 @@ import pygame
 import sys
 import objects.ImageLoader
 import objects.Player.player
+import objects.blockable.barrier as barrier
 
 
 class Room:
@@ -14,8 +15,10 @@ class Room:
         self.Units = []  # stored [[unit, code]...]
         self.Spells = []  # stored [[spell, code]...]
 
-        self.width = 1200
-        self.height = 800
+        self.width = 2560
+        self.height = 1600
+        # stored {(r,g,b):[type, object, params], ...}
+        self.scene_key = {}
 
         self.Codes = {}  # stored {code:frames_till_death,...} if -1 then that means the code is still alive
         self.creation_time = datetime.datetime.now()
@@ -31,12 +34,15 @@ class Room:
         self.viewport_height = 800
 
         self.image_loader = objects.ImageLoader.IL()
+        self.scene_image = None
 
         self.original_db = drawing_board
         self.db = pygame.Surface((self.width, self.height))
 
         self.key_box = []
         self.mouse_info = [pygame.mouse.get_pressed(), pygame.mouse.get_pos()]
+
+        self.load_scene()
 
     def frame_handle(self):
 
@@ -262,6 +268,25 @@ class Room:
                 self.viewport_y = 0
             else:
                 self.viewport_y = self.height - self.viewport_height
+
+    def load_scene(self):
+
+        if self.scene_image is not None:
+            for y in range(int(self.height / 32)):
+                for x in range(int(self.width / 32)):
+                    rgb = (self.scene_image.get_at((x, y)))[:3]
+                    try:
+                        # print(self.scene_key[rgb])
+                        key_value = self.scene_key[rgb]
+                        if key_value[2] is None:
+                            self.add_doodad(key_value[1](x*32, y*32))
+                        else:
+                            self.add_doodad(key_value[1](x*32, y*32, *key_value[2]))
+                    except KeyError:
+                        if rgb != (255, 255, 255):
+                            print("OBJECT NOT IN KEY")
+                            sys.exit()
+
 
 
 
