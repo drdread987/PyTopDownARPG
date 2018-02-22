@@ -13,7 +13,7 @@ class Player(objects.bases.BaseUnit):
         self.experience = None
 
         self.player = True
-
+        self.alignment = "GOOD"
         self.pclass = None
         self.gravity = True
         self.maxHealth = 1
@@ -93,7 +93,7 @@ class Player(objects.bases.BaseUnit):
                 self.double_jumped = True
                 delete_keys.append(key_counter)
 
-            elif key == 115 and self.onGround:
+            elif key == 115 and self.onGround and self.y < obj_handler.height - 32 - self.height:
                 self.y += 3
                 self.onGround = False
 

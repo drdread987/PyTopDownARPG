@@ -7,7 +7,7 @@ class BaseObject:
 
         self.x = x
         self.y = y
-
+        self.alignment = "NEUTRAL"
         self.width = 0
         self.height = 0
 

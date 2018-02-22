@@ -4,7 +4,6 @@ import pygame
 import sys
 import objects.ImageLoader
 import objects.Player.player
-import objects.blockable.barrier as barrier
 
 
 class Room:
@@ -41,8 +40,6 @@ class Room:
 
         self.key_box = []
         self.mouse_info = [pygame.mouse.get_pressed(), pygame.mouse.get_pos()]
-
-        self.load_scene()
 
     def frame_handle(self):
 
@@ -253,7 +250,7 @@ class Room:
     def shift_room(self, x, y):
         x -= self.viewport_width / 2
         y -= self.viewport_height / 2
-        if self.width - self.viewport_width > x > 0:
+        if self.width - self.viewport_width >= x >= 0:
             self.viewport_x = x
         else:
             if x < 0:
@@ -261,7 +258,7 @@ class Room:
             else:
                 self.viewport_x = self.width - self.viewport_width
 
-        if self.height - self.viewport_height > y > 0:
+        if self.height - self.viewport_height >= y >= 0:
             self.viewport_y = y
         else:
             if y < 0:
