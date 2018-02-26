@@ -7,11 +7,7 @@ class Player(objects.bases.BaseUnit):
 
     def __init__(self, x, y, save_name, IL):
         super().__init__(x, y)
-
-        self.level = None
-
-        self.experience = None
-
+        # ###################OBJ VALUES###########################
         self.player = True
         self.alignment = "GOOD"
         self.pclass = None
@@ -35,6 +31,22 @@ class Player(objects.bases.BaseUnit):
         self.image = AS(self.i_width, self.i_height, "res/Player/scr1_spritesheet.png", IL,
                         10, ["RIGHT", "LEFT", "RIGHTIDLE", "LEFTIDLE", "INAIRRIGHT", "INAIRLEFT"],
                         [2, 2, 1, 1, 1, 1, 1])
+        # ###################OBJ VALUES###########################
+
+        # ###################STATS###########################
+        self.stats = {"fortitude": 0,  # towards max health, flat value
+                      "agility": 0,  # percentage towards speed
+                      "dot_damage": 0,  # flat value damage increase
+                      "expertise": 0,  # class based stat
+                      "cooldown_recovery": 0,  # percentage towards ability cooldown recovery
+                      "pierce": 0,  # percentage towards ability pierce
+                      "aoe_damage": 0,  # flat value damage increase
+                      "st_damage": 0,  # flat value damage increase
+                      "resource_control": 0  # percentage towards class resource control
+                      }
+        # ###################STATS###########################
+
+
 
     def load_pclass(self, save_name):
 

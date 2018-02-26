@@ -243,9 +243,11 @@ class Room:
 
         pass
 
-    def draw_object(self, source, coord):
-
-        self.db.blit(source, (coord[0] - self.viewport_x, coord[1] - self.viewport_y))
+    def draw_object(self, source, coord, persistent=False):
+        if not persistent:
+            self.db.blit(source, (coord[0] - self.viewport_x, coord[1] - self.viewport_y))
+        else:
+            self.db.blit(source, (coord[0], coord[1]))
 
     def shift_room(self, x, y):
         x -= self.viewport_width / 2
