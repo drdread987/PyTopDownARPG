@@ -10,12 +10,12 @@ class CharacterCreation(objects.objectHandler.Room):
     def __init__(self, drawing_board):
         super().__init__(drawing_board)
 
-        self.background = self.image_loader.load_image("res/Temp_background.png")
+        self.background = self.image_loader.load_image("res/Background_green.png")
 
         self.width = 2560
         self.height = 1600
 
-        self.scene_key = {(0, 0, 0): ["DOODAD", barrier.BlackBarrier, None]}
+        self.scene_key = {(0, 0, 0): ["DOODAD", barrier.GrassBlock, None]}
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
         self.add_unit(objects.Player.player.Player(400, 400, "????", self.image_loader))
