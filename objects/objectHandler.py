@@ -284,6 +284,7 @@ class Room:
                     except KeyError:
                         if rgb != (255, 255, 255):
                             print("OBJECT NOT IN KEY")
+                            print(rgb)
                             sys.exit()
 
 

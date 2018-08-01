@@ -88,7 +88,7 @@ class BaseObject:
             good = True
             for obj in obj_handler.Doodads:
                 if obj[0].obstruction:
-                    if collide.rect_collide(self.x - speed, 1, self.y - 1, self.height,
+                    if collide.rect_collide(self.x + speed, 1, self.y - 1, self.height,
                                             obj[0].x, obj[0].width, obj[0].y, obj[0].height):
                         if obj[0].passable:
                             good = True

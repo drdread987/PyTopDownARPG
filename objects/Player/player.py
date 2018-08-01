@@ -46,8 +46,6 @@ class Player(objects.bases.BaseUnit):
                       }
         # ###################STATS###########################
 
-
-
     def load_pclass(self, save_name):
 
         pass

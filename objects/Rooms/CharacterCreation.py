@@ -15,7 +15,9 @@ class CharacterCreation(objects.objectHandler.Room):
         self.width = 2560
         self.height = 1600
 
-        self.scene_key = {(0, 0, 0): ["DOODAD", barrier.GrassBlock, None]}
+        self.scene_key = {(0, 0, 0): ["DOODAD", barrier.GrassSideBlock, None],
+                          (0, 0, 3): ["DOODAD", barrier.GrassBottomBlock, None],
+                          (0, 0, 8): ["DOODAD", barrier.GrassBottomShortBlock, None]}
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
         self.add_unit(objects.Player.player.Player(400, 400, "????", self.image_loader))
