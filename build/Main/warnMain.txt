@@ -10,9 +10,9 @@ missing module named pyimod03_importers - imported by C:\Users\Joshua\AppData\Lo
 missing module named 'pkg_resources.extern.pyparsing' - imported by pkg_resources._vendor.packaging.requirements, pkg_resources._vendor.packaging.markers
 missing module named 'com.sun' - imported by pkg_resources._vendor.appdirs
 missing module named com - imported by pkg_resources._vendor.appdirs
-missing module named StringIO - imported by pkg_resources._vendor.six
 missing module named __builtin__ - imported by pkg_resources._vendor.pyparsing
 missing module named ordereddict - imported by pkg_resources._vendor.pyparsing
+missing module named StringIO - imported by pkg_resources._vendor.six
 missing module named __main__ - imported by pkg_resources
 missing module named pkg_resources.extern.packaging - imported by pkg_resources.extern, pkg_resources
 missing module named pkg_resources.extern.appdirs - imported by pkg_resources.extern, pkg_resources
@@ -21,7 +21,7 @@ missing module named pkg_resources.extern.six - imported by pkg_resources.extern
 missing module named resource - imported by posix, D:\PyCharmProjects\PyTopDownARPG\Main.py
 missing module named posix - imported by os, D:\PyCharmProjects\PyTopDownARPG\Main.py
 missing module named _posixsubprocess - imported by subprocess, multiprocessing.util, D:\PyCharmProjects\PyTopDownARPG\Main.py
-missing module named org - imported by pickle, D:\PyCharmProjects\PyTopDownARPG\Main.py
+missing module named 'org.python' - imported by pickle, D:\PyCharmProjects\PyTopDownARPG\Main.py, xml.sax
 missing module named readline - imported by cmd, code, pdb, D:\PyCharmProjects\PyTopDownARPG\Main.py
 excluded module named _frozen_importlib - imported by importlib, importlib.abc, D:\PyCharmProjects\PyTopDownARPG\Main.py
 missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, D:\PyCharmProjects\PyTopDownARPG\Main.py
@@ -32,9 +32,9 @@ missing module named 'java.lang' - imported by platform, D:\PyCharmProjects\PyTo
 missing module named vms_lib - imported by platform, D:\PyCharmProjects\PyTopDownARPG\Main.py
 missing module named termios - imported by tty, D:\PyCharmProjects\PyTopDownARPG\Main.py, getpass
 missing module named grp - imported by shutil, tarfile, D:\PyCharmProjects\PyTopDownARPG\Main.py
-missing module named 'org.python' - imported by copy, D:\PyCharmProjects\PyTopDownARPG\Main.py, xml.sax
 missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, distutils.util, D:\PyCharmProjects\PyTopDownARPG\Main.py, netrc, getpass
 missing module named _dummy_threading - imported by dummy_threading, D:\PyCharmProjects\PyTopDownARPG\Main.py
+missing module named org - imported by copy, D:\PyCharmProjects\PyTopDownARPG\Main.py
 missing module named copy_reg - imported by cStringIO, pygame
 missing module named 'pygame._view' - imported by pygame
 missing module named pygame.sdlmain_osx - imported by pygame, pygame.macosx
