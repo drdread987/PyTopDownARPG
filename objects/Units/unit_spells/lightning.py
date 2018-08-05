@@ -33,6 +33,8 @@ class Lightning(objects.bases.BaseSpell):
                 self.launch_timer -= 1
         else:
             self.y += self.speed
+            if self.y > obj_handler.height:
+                obj_handler.rem_spell(spell=self)
             if collide.rect_collide(self.x, self.width, self.y, self.height,
                                     obj_handler.Units[0][0].x, obj_handler.Units[0][0].width, obj_handler.Units[0][0].y,
                                     obj_handler.Units[0][0].height):
