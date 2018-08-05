@@ -47,6 +47,8 @@ class Room:
         self.health_difficulty_adjuster = .5
         self.speed_difficulty_adjuster = .1
         self.damage_difficulty_adjuster = .25
+        self.difficulty_waiting = 1200
+        self.max_difficulty_waiting = 1200
 
     def frame_handle(self):
         for event in pygame.event.get():
@@ -104,7 +106,7 @@ class Room:
             health_actual_width = health_width * (unit[0].currentHealth / unit[0].maxHealth)
             health_x = unit[0].x + (unit[0].width/2) - (health_width/2)
             if (unit[0].currentHealth / unit[0].maxHealth) > 0.5:
-                color = (0, 255, 0)
+                color = (0, 125, 0)
             elif (unit[0].currentHealth / unit[0].maxHealth) > 0.25:
                 color = (255, 255, 0)
             else:
@@ -331,11 +333,16 @@ class Room:
                 new_monster.damage *= (1 + (self.damage_difficulty_adjuster * self.difficulty))
                 self.add_unit(new_monster)
 
-        except KeyError:
+            if (self.level+1) not in self.monsters:
+                self.difficulty_waiting = self.max_difficulty_waiting
 
-            self.level = 0
-            self.difficulty += 1
-            self.spawn_monsters()
+        except KeyError:
+            if self.difficulty_waiting == 0:
+                self.level = 0
+                self.difficulty += 1
+                self.spawn_monsters()
+            else:
+                self.difficulty_waiting -= 1
 
 
 

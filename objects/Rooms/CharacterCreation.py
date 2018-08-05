@@ -5,6 +5,7 @@ import objects.blockable.barrier as barrier
 import objects.Units.slime as slime
 import objects.Units.green_bee as bee
 import objects.Units.jumping_spider as spider
+import objects.Units.first_boss as fb
 import pygame
 import os
 import sys
@@ -29,7 +30,8 @@ class CharacterCreation(objects.objectHandler.Room):
                              [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []]],
                          2: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
                              [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []],
-                             [spider.JumpingSpider, 1280, 1408, []], [spider.JumpingSpider, 1472, 1376, []]]
+                             [spider.JumpingSpider, 1280, 1408, []], [spider.JumpingSpider, 1472, 1376, []]],
+                         3: [[fb.FirstBoss, 1500, 1350, []]]
                          }
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 

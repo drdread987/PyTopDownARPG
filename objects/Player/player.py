@@ -92,13 +92,13 @@ class Player(objects.bases.BaseUnit):
         key_counter = 0
         for key in keys:
             # print(key)
-            if key == 100 or key == 275:
+            if key == 275:
                 good = self.move(self.speed, obj_handler)
                 if good:
                     self.animation = "RIGHT"
                     self.direction = "RIGHT"
                     self.animation_changed = True
-            elif key == 97 or key == 276:
+            elif key == 276:
                 good = self.move(-self.speed, obj_handler)
                 if good:
                     self.animation = "LEFT"
@@ -115,7 +115,7 @@ class Player(objects.bases.BaseUnit):
                 self.double_jumped = True
                 delete_keys.append(key_counter)
 
-            elif key == 115 or key == 274:
+            elif key == 274:
                 if self.onGround and self.y < obj_handler.height - 32 - self.height:
                     self.y += 3
                     self.onGround = False

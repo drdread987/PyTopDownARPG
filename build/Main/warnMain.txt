@@ -7,11 +7,11 @@ missing module named multiprocessing.set_start_method - imported by multiprocess
 missing module named multiprocessing.get_start_method - imported by multiprocessing, multiprocessing.spawn
 missing module named 'win32com.gen_py' - imported by win32com, C:\Users\Joshua\AppData\Local\Programs\Python\Python36-32\lib\site-packages\PyInstaller\loader\rthooks\pyi_rth_win32comgenpy.py
 missing module named pyimod03_importers - imported by C:\Users\Joshua\AppData\Local\Programs\Python\Python36-32\lib\site-packages\PyInstaller\loader\rthooks\pyi_rth_pkgres.py
-missing module named __builtin__ - imported by pkg_resources._vendor.pyparsing
-missing module named ordereddict - imported by pkg_resources._vendor.pyparsing
 missing module named 'com.sun' - imported by pkg_resources._vendor.appdirs
 missing module named com - imported by pkg_resources._vendor.appdirs
 missing module named StringIO - imported by pkg_resources._vendor.six
+missing module named __builtin__ - imported by pkg_resources._vendor.pyparsing
+missing module named ordereddict - imported by pkg_resources._vendor.pyparsing
 missing module named 'pkg_resources.extern.pyparsing' - imported by pkg_resources._vendor.packaging.requirements, pkg_resources._vendor.packaging.markers
 missing module named __main__ - imported by pkg_resources
 missing module named pkg_resources.extern.packaging - imported by pkg_resources.extern, pkg_resources
