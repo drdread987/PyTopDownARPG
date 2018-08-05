@@ -79,7 +79,7 @@ class BaseClass:
                     if spell.cooldown == 0:
                         height = 50
                     else:
-                        height = 50 / (spell.maxCooldown / spell.cooldown)
+                        height = 50 * (spell.cooldown / spell.maxCooldown)
                 else:
                     height = 50
                 pygame.draw.rect(obj_handler.db, spell.cooldown_colors, [0 + (10 * counter), 800 - height, 10, height])

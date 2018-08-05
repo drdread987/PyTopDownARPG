@@ -32,7 +32,8 @@ class Ignite(objects.Player.pspells.base.Base):
 
         for unit in obj_handler.Units:
             if unit[1] in codes:
-                unit[0].take_damage(self.base_damage + (codes[unit[1]] * self.damage_per_blaze), "FIRE")
+                unit[0].take_damage(self.base_damage + (codes[unit[1]] * self.damage_per_blaze) +
+                                    stats["aoe_damage"] + stats["damage"], "FIRE")
 
         self.cooldown = self.maxCooldown * ((100 - stats["cooldown_recovery"]) / 100)
 

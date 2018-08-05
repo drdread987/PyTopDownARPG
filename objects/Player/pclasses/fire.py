@@ -4,6 +4,7 @@ import objects.Player.pspells.fireball
 import objects.Player.pspells.blaze_spell
 import objects.Player.pspells.flame_dash
 import objects.Player.pspells.ignite
+import objects.Player.pspells.meteor
 
 
 class Fire(objects.Player.pclasses.base.BaseClass):
@@ -19,6 +20,7 @@ class Fire(objects.Player.pclasses.base.BaseClass):
         self.ability_one = objects.Player.pspells.fireball.Fireball()
         self.ability_two = objects.Player.pspells.flame_dash.FlameDash()
         self.ability_three = objects.Player.pspells.ignite.Ignite()
+        self.ability_four = objects.Player.pspells.meteor.Meteor()
         self.ability_expertise = objects.Player.pspells.blaze.Blaze()
 
     def stat_change(self, player, stats):
@@ -50,5 +52,9 @@ class Fire(objects.Player.pclasses.base.BaseClass):
                     tracking_height += 30
         if key == 50 and self.ability_two is not None and self.ability_two.cooldown == 0:
             self.ability_two.cast_ability(obj_handler, stats, x, y, direction, self.resource)
+
+        if key == 52 and self.ability_four is not None and self.ability_four.cooldown == 0:
+            print("CASTING FOUR")
+            self.ability_four.cast_ability(obj_handler, stats, x, y, direction, self.resource)
 
 
