@@ -70,18 +70,18 @@ class FirstBoss(objects.bases.BaseUnit):
                 else:
                     self.dash_cooldown -= 1
                     if self.dash_cooldown == 0:
-                        self.dash_coords = list([int(player_x), int(player_y)])
+                        self.dash_coords = list([int(player_x), int(player_y) - self.height])
                     if player_x > self.x:
                         self.x += self.hor_speed
                     else:
                         self.x -= self.hor_speed
 
-                    if player_y > self.y:
+                    if player_y - self.height > self.y:
                         self.y += self.ver_speed
                     else:
                         self.y -= self.ver_speed
 
-            if (self.currentHealth / self.maxHealth < .6) and self.stage == 0:
+            if (self.currentHealth / self.maxHealth < .7) and self.stage == 0:
                 self.stage = 1
                 self.image = self.images[self.stage][0]
                 self.width = self.images[self.stage][1]
@@ -89,7 +89,7 @@ class FirstBoss(objects.bases.BaseUnit):
 
         elif self.stage == 1:
 
-            if self.currentHealth / self.maxHealth < .25:
+            if self.currentHealth / self.maxHealth < .35:
                 self.stage = 2
                 self.image = self.images[self.stage][0]
                 self.width = self.images[self.stage][1]

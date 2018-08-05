@@ -13,7 +13,7 @@ class Ignite(objects.Player.pspells.base.Base):
         self.maxCooldown = 1000
 
         self.base_damage = 10
-        self.damage_per_blaze = 2.5
+        self.damage_per_blaze = 1
 
     def cast_ability(self, obj_handler, stats, x, y, direction, *args):
         super().cast_ability(obj_handler, stats, x, y, direction, *args)
