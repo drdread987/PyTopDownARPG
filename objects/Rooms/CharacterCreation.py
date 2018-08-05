@@ -75,6 +75,7 @@ class CharacterCreation(objects.objectHandler.Room):
         for unit in self.Units:
             if unit[0].enemy:
                 unit[0].maxHealth *= self.difficulty
+                unit[0].speed += int(self.difficulty/2)
                 unit[0].currentHealth = unit[0].maxHealth
 
     def player_died(self, player):
