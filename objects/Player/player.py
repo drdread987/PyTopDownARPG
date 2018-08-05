@@ -10,6 +10,7 @@ class Player(objects.bases.BaseUnit):
         super().__init__(x, y)
         # ###################OBJ VALUES###########################
         self.player = True
+        self.enemy = False
         self.alignment = "GOOD"
         self.pclass = objects.Player.pclasses.fire.Fire()
         self.gravity = True

@@ -10,6 +10,8 @@ class Slime(objects.bases.BaseUnit):
         self.speed = 1.5
         self.damage = 1
 
+        self.enemy = True
+
         self.image = "res/slime.png"
         self.height = 56
         self.width = 64
