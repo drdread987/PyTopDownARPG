@@ -2,6 +2,7 @@ import objects.Player.pspells.base
 import objects.bases
 import objects.Tools.collision as collide
 from random import randint
+import objects.Player.pspells.blaze
 
 
 class Meteor(objects.Player.pspells.base.Base):
@@ -11,7 +12,7 @@ class Meteor(objects.Player.pspells.base.Base):
 
         self.description = "Calls down a meteor in front of you dealing damage to any targets hit"
 
-        self.maxCooldown = 1200
+        self.maxCooldown = 1500
         self.cooldown_colors = [181, 71, 0]
 
         self.base_damage = 15
@@ -65,8 +66,11 @@ class MeteorSpell(objects.bases.BaseSpell):
             obj_handler.rem_spell(spell=self)
 
         for unit in obj_handler.Units:
-            if unit[1] not in self.hit_list:
+            if unit[1] not in self.hit_list and unit[0].enemy:
                 if collide.rect_collide(self.x, self.width, self.y, self.height, unit[0].x,
                                         unit[0].width, unit[0].y, unit[0].height):
                     unit[0].take_damage(self.damage, "FIRE")
+                    if unit[0].alive:
+                        new_blaze = objects.Player.pspells.blaze.Blaze()
+                        new_blaze.cast_ability(obj_handler, [], unit[0].x, unit[0].y, self.direction, unit[1])
                     self.hit_list.append(unit[1])
