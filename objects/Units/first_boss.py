@@ -2,6 +2,7 @@ import objects.bases
 import objects.Tools.collision as collide
 import objects.Units.unit_spells.flying_sword as flying_sword
 import objects.Units.unit_spells.lightning as lightning
+import objects.Units.unit_spells.heart as heart
 from random import randint
 
 
@@ -95,6 +96,7 @@ class FirstBoss(objects.bases.BaseUnit):
                 self.image = self.images[self.stage][0]
                 self.width = self.images[self.stage][1]
                 self.height = self.images[self.stage][2]
+                obj_handler.add_spell(heart.Heart(1000, 800, 10))
 
         if self.stage == 1 or self.stage == 2:
             if self.sword_cooldown == 0:
@@ -117,6 +119,7 @@ class FirstBoss(objects.bases.BaseUnit):
                 self.dashing = False
                 self.dash_cooldown = self.dash_cooldown_max
                 self.dashing_timer = self.dashing_timer_max
+                obj_handler.add_spell(heart.Heart(1000, 800, 25))
 
         if collide.rect_collide(self.x, self.width, self.y, self.height,
                                 obj_handler.Units[0][0].x, obj_handler.Units[0][0].width, obj_handler.Units[0][0].y,

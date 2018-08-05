@@ -18,8 +18,8 @@ class JumpingSpider(objects.bases.BaseUnit):
         self.upwardVelocityMax = 15
 
         self.speed = 2
-        self.damage = 1
-        self.maxHealth = 3
+        self.damage = 2
+        self.maxHealth = 6
         self.currentHealth = self.maxHealth
 
     def step(self, obj_handler, keys, mouse_info):

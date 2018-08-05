@@ -6,6 +6,8 @@ import objects.Units.slime as slime
 import objects.Units.green_bee as bee
 import objects.Units.jumping_spider as spider
 import objects.Units.first_boss as fb
+import objects.Units.unit_spells.heart as heart
+import objects.Units.unit_spells.buff_stats as buff
 import pygame
 import os
 import sys
@@ -49,6 +51,10 @@ class CharacterCreation(objects.objectHandler.Room):
 
         if not found:
             self.level += 1
+            if self.difficulty_waiting >= self.max_difficulty_waiting:
+                self.add_spell(heart.Heart(1000, 800, 25))
+            elif self.difficulty_waiting == self.max_difficulty_waiting-1:
+                self.add_spell(buff.BuffStats(1050, 800))
             self.spawn_monsters()
 
     def next_room(self):
