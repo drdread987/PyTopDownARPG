@@ -1,6 +1,7 @@
 import objects.bases
 import objects.Tools.collision as collide
 import objects.Units.unit_spells.flying_sword as flying_sword
+import objects.Units.unit_spells.lightning as lightning
 from random import randint
 
 
@@ -29,16 +30,19 @@ class FirstBoss(objects.bases.BaseUnit):
 
         self.dashing = False
 
-        self.dashing_timer = 300
-        self.dashing_timer_max = 300
+        self.dashing_timer = 100
+        self.dashing_timer_max = 100
 
-        self.dash_cooldown = 900
-        self.dash_cooldown_max = 900
+        self.dash_cooldown = 400
+        self.dash_cooldown_max = 250
 
         self.dash_coords = [0, 0]
 
         self.sword_cooldown = 200
         self.sword_max_cooldown = 200
+
+        self.lightning_cooldown = 100
+        self.lightning_max_cooldown = 100
 
     def step(self, obj_handler, keys, mouse_info):
         super().step(obj_handler, keys, mouse_info)
@@ -94,10 +98,16 @@ class FirstBoss(objects.bases.BaseUnit):
 
         if self.stage == 1 or self.stage == 2:
             if self.sword_cooldown == 0:
-                obj_handler.add_spell(flying_sword.FlyingSword(obj_handler.width, player_y, (self.damage/2)))
+                obj_handler.add_spell(flying_sword.FlyingSword(obj_handler.width, player_y, (self.damage*2)))
                 self.sword_cooldown = self.sword_max_cooldown
             else:
                 self.sword_cooldown -= 1
+
+            if self.lightning_cooldown == 0:
+                obj_handler.add_spell(lightning.Lightning(player_x, 0, (self.damage*4)))
+                self.lightning_cooldown = self.lightning_max_cooldown
+            else:
+                self.lightning_cooldown -= 1
 
             if self.currentHealth / self.maxHealth < .35 and self.stage == 1:
                 self.stage = 2
