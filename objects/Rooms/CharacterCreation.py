@@ -1,6 +1,7 @@
 import objects.objectHandler
 import objects.Player.player
 import objects.blockable.barrier as barrier
+import objects.Units.slime as slime
 import pygame
 import os
 
@@ -17,10 +18,11 @@ class CharacterCreation(objects.objectHandler.Room):
 
         self.scene_key = {(0, 0, 0): ["DOODAD", barrier.GrassSideBlock, None],
                           (0, 0, 3): ["DOODAD", barrier.GrassBottomBlock, None],
-                          (0, 0, 8): ["DOODAD", barrier.GrassBottomShortBlock, None]}
+                          (0, 0, 8): ["DOODAD", barrier.GrassBottomShortBlock, None],
+                          (0, 255, 0): ["UNIT", slime.Slime, None]}
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
-        self.add_unit(objects.Player.player.Player(400, 400, "????", self.image_loader))
+        self.add_unit(objects.Player.player.Player(400, 800, "????", self.image_loader))
 
         self.load_scene()
 

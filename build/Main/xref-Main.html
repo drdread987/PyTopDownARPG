@@ -8248,6 +8248,7 @@ imported by:
  &#8226;   <a href="#objects.Player">objects.Player</a>
  &#8226;   <a href="#objects.Rooms">objects.Rooms</a>
  &#8226;   <a href="#objects.Tools">objects.Tools</a>
+ &#8226;   <a href="#objects.Units">objects.Units</a>
  &#8226;   <a href="#objects.bases">objects.bases</a>
  &#8226;   <a href="#objects.blockable">objects.blockable</a>
  &#8226;   <a href="#objects.objectHandler">objects.objectHandler</a>
@@ -8318,6 +8319,62 @@ imports:
   </div>
   <div class="import">
 imported by:
+    <a href="#objects.Player.pclasses">objects.Player.pclasses</a>
+ &#8226;   <a href="#objects.Player.player">objects.Player.player</a>
+ &#8226;   <a href="#objects.Player.pspells">objects.Player.pspells</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pclasses"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pclasses/__init__.py" type="text/plain"><tt>objects.Player.pclasses</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#objects.Player">objects.Player</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pclasses.base">objects.Player.pclasses.base</a>
+ &#8226;   <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pclasses.base"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pclasses/base.py" type="text/plain"><tt>objects.Player.pclasses.base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pclasses">objects.Player.pclasses</a>
+ &#8226;   <a href="#pygame">pygame</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pclasses.fire"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pclasses/fire.py" type="text/plain"><tt>objects.Player.pclasses.fire</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pclasses">objects.Player.pclasses</a>
+ &#8226;   <a href="#objects.Player.pclasses.base">objects.Player.pclasses.base</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze">objects.Player.pspells.blaze</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze_spell">objects.Player.pspells.blaze_spell</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball">objects.Player.pspells.fireball</a>
+
+  </div>
+  <div class="import">
+imported by:
     <a href="#objects.Player.player">objects.Player.player</a>
 
   </div>
@@ -8330,6 +8387,7 @@ imported by:
 <span class="moduletype">SourceModule</span>  <div class="import">
 imports:
     <a href="#objects.Player">objects.Player</a>
+ &#8226;   <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
  &#8226;   <a href="#objects.Tools.Sprite">objects.Tools.Sprite</a>
  &#8226;   <a href="#objects.Tools.collision">objects.Tools.collision</a>
  &#8226;   <a href="#objects.bases">objects.bases</a>
@@ -8339,6 +8397,118 @@ imports:
 imported by:
     <a href="#objects.Rooms.CharacterCreation">objects.Rooms.CharacterCreation</a>
  &#8226;   <a href="#objects.objectHandler">objects.objectHandler</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/__init__.py" type="text/plain"><tt>objects.Player.pspells</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#objects.Player">objects.Player</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pspells.base">objects.Player.pspells.base</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze">objects.Player.pspells.blaze</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze_spell">objects.Player.pspells.blaze_spell</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball">objects.Player.pspells.fireball</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells.base"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/base.py" type="text/plain"><tt>objects.Player.pspells.base</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pspells">objects.Player.pspells</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pspells.blaze">objects.Player.pspells.blaze</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball">objects.Player.pspells.fireball</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells.blaze"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/blaze.py" type="text/plain"><tt>objects.Player.pspells.blaze</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pspells">objects.Player.pspells</a>
+ &#8226;   <a href="#objects.Player.pspells.base">objects.Player.pspells.base</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze_spell">objects.Player.pspells.blaze_spell</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells.blaze_spell"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/blaze_spell.py" type="text/plain"><tt>objects.Player.pspells.blaze_spell</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pspells">objects.Player.pspells</a>
+ &#8226;   <a href="#objects.bases">objects.bases</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze">objects.Player.pspells.blaze</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells.fireball"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/fireball.py" type="text/plain"><tt>objects.Player.pspells.fireball</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pspells">objects.Player.pspells</a>
+ &#8226;   <a href="#objects.Player.pspells.base">objects.Player.pspells.base</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pclasses.fire">objects.Player.pclasses.fire</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Player.pspells.fireball_spell"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Player/pspells/fireball_spell.py" type="text/plain"><tt>objects.Player.pspells.fireball_spell</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Player.pspells">objects.Player.pspells</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze">objects.Player.pspells.blaze</a>
+ &#8226;   <a href="#objects.Tools.Sprite">objects.Tools.Sprite</a>
+ &#8226;   <a href="#objects.Tools.collision">objects.Tools.collision</a>
+ &#8226;   <a href="#objects.bases">objects.bases</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Player.pspells.fireball">objects.Player.pspells.fireball</a>
 
   </div>
 
@@ -8368,6 +8538,7 @@ imported by:
 imports:
     <a href="#objects.Player.player">objects.Player.player</a>
  &#8226;   <a href="#objects.Rooms">objects.Rooms</a>
+ &#8226;   <a href="#objects.Units.slime">objects.Units.slime</a>
  &#8226;   <a href="#objects.blockable.barrier">objects.blockable.barrier</a>
  &#8226;   <a href="#objects.objectHandler">objects.objectHandler</a>
  &#8226;   <a href="#os">os</a>
@@ -8431,6 +8602,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#objects.Player.player">objects.Player.player</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
 
   </div>
 
@@ -8448,7 +8620,43 @@ imports:
 imported by:
     <a href="#objects.MenuItems.Selectables">objects.MenuItems.Selectables</a>
  &#8226;   <a href="#objects.Player.player">objects.Player.player</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
+ &#8226;   <a href="#objects.Units.slime">objects.Units.slime</a>
  &#8226;   <a href="#objects.bases">objects.bases</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Units"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Units/__init__.py" type="text/plain"><tt>objects.Units</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#objects">objects</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Units.slime">objects.Units.slime</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="objects.Units.slime"></a>
+  <a target="code" href="///D:/PyCharmProjects/PyTopDownARPG/objects/Units/slime.py" type="text/plain"><tt>objects.Units.slime</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#objects.Tools.collision">objects.Tools.collision</a>
+ &#8226;   <a href="#objects.Units">objects.Units</a>
+ &#8226;   <a href="#objects.bases">objects.bases</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#objects.Rooms.CharacterCreation">objects.Rooms.CharacterCreation</a>
 
   </div>
 
@@ -8467,6 +8675,9 @@ imports:
 imported by:
     <a href="#objects.MenuItems.Selectables">objects.MenuItems.Selectables</a>
  &#8226;   <a href="#objects.Player.player">objects.Player.player</a>
+ &#8226;   <a href="#objects.Player.pspells.blaze_spell">objects.Player.pspells.blaze_spell</a>
+ &#8226;   <a href="#objects.Player.pspells.fireball_spell">objects.Player.pspells.fireball_spell</a>
+ &#8226;   <a href="#objects.Units.slime">objects.Units.slime</a>
  &#8226;   <a href="#objects.blockable.barrier">objects.blockable.barrier</a>
 
   </div>
@@ -9626,6 +9837,7 @@ imported by:
     <a href="#Main.py">Main.py</a>
  &#8226;   <a href="#objects.ImageLoader">objects.ImageLoader</a>
  &#8226;   <a href="#objects.MenuItems.Selectables">objects.MenuItems.Selectables</a>
+ &#8226;   <a href="#objects.Player.pclasses.base">objects.Player.pclasses.base</a>
  &#8226;   <a href="#objects.Rooms.CharacterCreation">objects.Rooms.CharacterCreation</a>
  &#8226;   <a href="#objects.Rooms.MainMenu">objects.Rooms.MainMenu</a>
  &#8226;   <a href="#objects.Tools.Sprite">objects.Tools.Sprite</a>

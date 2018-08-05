@@ -89,10 +89,10 @@ class Room:
             self.db.blit(self.background, (0, 0))
         for doodad in self.Doodads:
             doodad[0].draw(self, self.image_loader)
-        for spell in self.Spells:
-            spell[0].draw(self, self.image_loader)
         for unit in self.Units:
             unit[0].draw(self, self.image_loader)
+        for spell in self.Spells:
+            spell[0].draw(self, self.image_loader)
         self.original_db.blit(self.db, (0, 0))
         pygame.display.update()
 
@@ -114,7 +114,7 @@ class Room:
 
         code = self.gen_code()
 
-        self.Spells.append([[spell, code]])
+        self.Spells.append([spell, code])
 
         return code
 
@@ -139,7 +139,6 @@ class Room:
                 counter += 1
 
     def rem_unit(self, code=None, unit=None):
-
         if code is None and unit is None:
             return False
 
@@ -278,9 +277,19 @@ class Room:
                         # print(self.scene_key[rgb])
                         key_value = self.scene_key[rgb]
                         if key_value[2] is None:
-                            self.add_doodad(key_value[1](x*32, y*32))
+                            if key_value[0] == "DOODAD":
+                                self.add_doodad(key_value[1](x*32, y*32))
+                            elif key_value[0] == "UNIT":
+                                self.add_unit(key_value[1](x*32, y*32))
+                            elif key_value[0] == "SPELL":
+                                self.add_spell(key_value[1](x*32, y*32))
                         else:
-                            self.add_doodad(key_value[1](x*32, y*32, *key_value[2]))
+                            if key_value[0] == "DOODAD":
+                                self.add_doodad(key_value[1](x*32, y*32, *key_value[2]))
+                            elif key_value[0] == "UNIT":
+                                self.add_unit(key_value[1](x * 32, y * 32, *key_value[2]))
+                            elif key_value[0] == "SPELL":
+                                self.add_spell(key_value[1](x * 32, y * 32, *key_value[2]))
                     except KeyError:
                         if rgb != (255, 255, 255):
                             print("OBJECT NOT IN KEY")

@@ -1,6 +1,7 @@
 import objects.bases
 from objects.Tools.collision import rect_collide as collide
 from objects.Tools.Sprite import AnimatedSprite as AS
+import objects.Player.pclasses.fire
 
 
 class Player(objects.bases.BaseUnit):
@@ -10,9 +11,9 @@ class Player(objects.bases.BaseUnit):
         # ###################OBJ VALUES###########################
         self.player = True
         self.alignment = "GOOD"
-        self.pclass = None
+        self.pclass = objects.Player.pclasses.fire.Fire()
         self.gravity = True
-        self.maxHealth = 1
+        self.maxHealth = 100
         self.currentHealth = self.maxHealth
         self.double_jumped = False
         self.double_jump_available = True
@@ -39,12 +40,19 @@ class Player(objects.bases.BaseUnit):
                       "dot_damage": 0,  # flat value damage increase
                       "expertise": 0,  # class based stat
                       "cooldown_recovery": 0,  # percentage towards ability cooldown recovery
-                      "pierce": 0,  # percentage towards ability pierce
                       "aoe_damage": 0,  # flat value damage increase
                       "st_damage": 0,  # flat value damage increase
-                      "resource_control": 0  # percentage towards class resource control
+                      "resource_control": 0,  # percentage towards class resource control,
+                      "damage": 0  # pure damage increase
                       }
         # ###################STATS###########################
+
+        self.stat_change()
+        self.currentHealth = self.maxHealth
+
+    def stat_change(self):
+
+        self.pclass.stat_change(self, self.stats)
 
     def load_pclass(self, save_name):
 
@@ -53,8 +61,11 @@ class Player(objects.bases.BaseUnit):
     def draw(self, object_handler, IL):
         super().draw(object_handler, IL)
 
+        self.pclass.draw_cooldown(object_handler)
+
     def step(self, obj_handler, keys, mouse_info):
         self.handle_keys(keys, obj_handler)
+        self.pclass.step(obj_handler)
         if self.onGround and self.double_jumped and self.double_jump_available:
             self.double_jumped = False
         super().step(obj_handler, keys, mouse_info)
@@ -106,6 +117,9 @@ class Player(objects.bases.BaseUnit):
             elif key == 115 and self.onGround and self.y < obj_handler.height - 32 - self.height:
                 self.y += 3
                 self.onGround = False
+
+            elif key in [49, 50, 51, 52, 53, 54]:
+                self.pclass.cast_ability(key, self.stats, obj_handler, self.x, self.y, self.direction)
 
             key_counter += 1
         delete_keys.sort(reverse=True)
