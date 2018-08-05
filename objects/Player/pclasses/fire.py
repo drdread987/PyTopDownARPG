@@ -3,6 +3,7 @@ import objects.Player.pspells.blaze
 import objects.Player.pspells.fireball
 import objects.Player.pspells.blaze_spell
 import objects.Player.pspells.flame_dash
+import objects.Player.pspells.ignite
 
 
 class Fire(objects.Player.pclasses.base.BaseClass):
@@ -11,18 +12,19 @@ class Fire(objects.Player.pclasses.base.BaseClass):
         super().__init__()
 
         self.resource_name = "Blaze"
-        self.resource_max = 10
+        self.resource_max = 5
 
         self.fortitudeMultiplier = 5
 
         self.ability_one = objects.Player.pspells.fireball.Fireball()
         self.ability_two = objects.Player.pspells.flame_dash.FlameDash()
+        self.ability_three = objects.Player.pspells.ignite.Ignite()
         self.ability_expertise = objects.Player.pspells.blaze.Blaze()
 
     def stat_change(self, player, stats):
         super().stat_change(player, stats)
 
-        self.resource_max = 10 + int(stats["resource_control"]/5)
+        self.resource_max = 5 + int(stats["resource_control"]/5)
 
     def step(self, obj_list):
         super().step(obj_list)
@@ -48,4 +50,5 @@ class Fire(objects.Player.pclasses.base.BaseClass):
                     tracking_height += 30
         if key == 50 and self.ability_two is not None and self.ability_two.cooldown == 0:
             self.ability_two.cast_ability(obj_handler, stats, x, y, direction, self.resource)
+
 
