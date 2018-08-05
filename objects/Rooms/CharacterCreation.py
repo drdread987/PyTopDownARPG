@@ -25,7 +25,7 @@ class CharacterCreation(objects.objectHandler.Room):
         self.monsters = {0: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
                              [slime.Slime, 1280, 1408, []], [slime.Slime, 1472, 1376, []]],
                          1: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
-                             [bee.GreenBee, 1280, 400, []], [bee.GreenBee, 1472, 400, []]]}
+                             [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []]]}
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
         self.add_unit(objects.Player.player.Player(400, 800, "????", self.image_loader))
