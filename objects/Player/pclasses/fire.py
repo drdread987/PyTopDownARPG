@@ -20,13 +20,16 @@ class Fire(objects.Player.pclasses.base.BaseClass):
     def stat_change(self, player, stats):
         super().stat_change(player, stats)
 
+        self.resource_max = 10 + int(stats["resource_control"]/5)
+
     def step(self, obj_list):
         super().step(obj_list)
         self.resource = 0
         for spell in obj_list.Spells:
             if isinstance(spell[0], objects.Player.pspells.blaze_spell.BlazeSpell):
                 self.resource += 1
-                print("GOT A RESOURCE")
+        if self.resource > self.resource_max:
+            self.resource = self.resource_max
 
     def cast_ability(self, key, stats, obj_handler, x, y, direction):
         super().cast_ability(key, stats, obj_handler, x, y, direction)
