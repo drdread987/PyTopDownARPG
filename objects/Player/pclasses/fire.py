@@ -54,7 +54,6 @@ class Fire(objects.Player.pclasses.base.BaseClass):
             self.ability_two.cast_ability(obj_handler, stats, x, y, direction, self.resource)
 
         if key == 52 and self.ability_four is not None and self.ability_four.cooldown == 0:
-            print("CASTING FOUR")
             self.ability_four.cast_ability(obj_handler, stats, x, y, direction, self.resource)
 
 

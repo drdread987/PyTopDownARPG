@@ -4,6 +4,7 @@ import objects.Rooms.MainMenu
 import objects.blockable.barrier as barrier
 import objects.Units.slime as slime
 import objects.Units.green_bee as bee
+import objects.Units.jumping_spider as spider
 import pygame
 import os
 import sys
@@ -25,7 +26,11 @@ class CharacterCreation(objects.objectHandler.Room):
         self.monsters = {0: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
                              [slime.Slime, 1280, 1408, []], [slime.Slime, 1472, 1376, []]],
                          1: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
-                             [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []]]}
+                             [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []]],
+                         2: [[slime.Slime, 832, 1376, []], [slime.Slime, 992, 1344, []],
+                             [bee.GreenBee, 1280, 800, []], [bee.GreenBee, 1472, 800, []],
+                             [spider.JumpingSpider, 1280, 1408, []], [spider.JumpingSpider, 1472, 1376, []]]
+                         }
         self.scene_image = self.image_loader.load_image("res/Scenes/scene1.png")
 
         self.add_unit(objects.Player.player.Player(400, 800, "????", self.image_loader))
@@ -41,8 +46,6 @@ class CharacterCreation(objects.objectHandler.Room):
                 break
 
         if not found:
-            print("FINISHED LEVEL")
-            self.difficulty += 1
             self.level += 1
             self.spawn_monsters()
 

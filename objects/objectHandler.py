@@ -44,9 +44,9 @@ class Room:
         self.monsters = {}  # stored {level: [[class, x, y, [arg1, arg2, arg3]]]}
         self.level = 0
         self.difficulty = 0
-        self.health_difficulty_adjuster = 5
+        self.health_difficulty_adjuster = .5
         self.speed_difficulty_adjuster = .1
-        self.damage_difficulty_adjuster = .5
+        self.damage_difficulty_adjuster = .25
 
     def frame_handle(self):
         for event in pygame.event.get():
@@ -325,10 +325,10 @@ class Room:
         try:
             for monster in self.monsters[self.level]:
                 new_monster = monster[0](monster[1], monster[2], *monster[3])
-                new_monster.maxHealth += (self.health_difficulty_adjuster * self.difficulty)
+                new_monster.maxHealth *= (1 + (self.health_difficulty_adjuster * self.difficulty))
                 new_monster.currentHealth = new_monster.maxHealth
                 new_monster.speed += (self.speed_difficulty_adjuster * self.difficulty)
-                new_monster.damage += (self.damage_difficulty_adjuster * self.difficulty)
+                new_monster.damage *= (1 + (self.damage_difficulty_adjuster * self.difficulty))
                 self.add_unit(new_monster)
 
         except KeyError:
