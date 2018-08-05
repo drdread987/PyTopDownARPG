@@ -91,6 +91,21 @@ class Room:
             doodad[0].draw(self, self.image_loader)
         for unit in self.Units:
             unit[0].draw(self, self.image_loader)
+
+            health_y = unit[0].y - 15
+            health_height = 10
+            health_width = unit[0].width * .75
+            health_actual_width = health_width * (unit[0].currentHealth / unit[0].maxHealth)
+            health_x = unit[0].x + (unit[0].width/2) - (health_width/2)
+            if (unit[0].currentHealth / unit[0].maxHealth) > 0.5:
+                color = (0, 255, 0)
+            elif (unit[0].currentHealth / unit[0].maxHealth) > 0.25:
+                color = (255, 255, 0)
+            else:
+                color = (255, 0, 0)
+            pygame.draw.rect(self.db, color, [health_x - self.viewport_x, health_y - self.viewport_y,
+                                              health_actual_width, health_height])
+
         for spell in self.Spells:
             spell[0].draw(self, self.image_loader)
         self.original_db.blit(self.db, (0, 0))
